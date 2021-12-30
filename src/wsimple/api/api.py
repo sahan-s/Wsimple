@@ -1406,9 +1406,10 @@ class Wsimple:
             total_value = account_data["results"][-1]["value"]
             account_value_graph = account_data["results"]
             account_change = round(total_value["amount"] - previous_amount, 2)
-            account_change_percentage = round(
-                (account_change / previous_amount) * 100, 2
-            )
+            try:
+                account_change_percentage = round((account_change / previous_amount) * 100, 2)
+            except:
+                account_change_percentage = 0
             return {
                 "available_to_trade": {
                     "amount": account["buying_power"]["amount"],
